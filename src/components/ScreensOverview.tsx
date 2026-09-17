@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageView, Expert, Category } from '../types';
+import { expertsData } from '../data/experts';
 import { 
   Menu, Bell, Search, BookOpen, Scale, Heart, Coins, ScrollText, 
   Compass, History, Sparkles, GraduationCap, Home, Users, Calendar, 

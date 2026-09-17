@@ -2,6 +2,12 @@ export type ConsultationType = 'chat' | 'voice' | 'video';
 
 export type UserRole = 'student' | 'expert' | 'admin';
 
+export interface ToastMessage {
+  id: string;
+  type: 'success' | 'error' | 'info';
+  message: string;
+}
+
 export interface User {
   id: string;
   name: string;
