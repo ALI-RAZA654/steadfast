@@ -65,10 +65,10 @@ export const HomePage: React.FC<HomePageProps> = ({
       case 'quran-learning': return { icon: BookOpen, bg: 'bg-emerald-500/10 text-emerald-600 border-emerald-200' };
       case 'fiqh-masail': return { icon: Scale, bg: 'bg-blue-500/10 text-blue-600 border-blue-200' };
       case 'family-marriage': return { icon: Heart, bg: 'bg-pink-500/10 text-pink-600 border-pink-200' };
-      case 'islamic-finance': return { icon: Coins, bg: 'bg-amber-500/10 text-amber-600 border-amber-200' };
+      case 'islamic-finance': return { icon: Coins, bg: 'bg-green-500/10 text-green-600 border-green-200' };
       case 'hadith-studies': return { icon: ScrollText, bg: 'bg-purple-500/10 text-purple-600 border-purple-200' };
       case 'aqeedah-beliefs': return { icon: Compass, bg: 'bg-teal-500/10 text-teal-600 border-teal-200' };
-      case 'seerah-history': return { icon: History, bg: 'bg-amber-700/10 text-amber-800 border-amber-200' };
+      case 'seerah-history': return { icon: History, bg: 'bg-green-700/10 text-green-800 border-green-200' };
       case 'spiritual-guidance': return { icon: Sparkles, bg: 'bg-emerald-500/10 text-emerald-600 border-emerald-200' };
       case 'children-youth': return { icon: GraduationCap, bg: 'bg-sky-500/10 text-sky-600 border-sky-200' };
       default: return { icon: BookOpen, bg: 'bg-blue-500/10 text-blue-600 border-blue-200' };
@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Subtle Geometric Background Overlay & Glow */}
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-10 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-10 w-96 h-96 bg-green-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -93,15 +93,15 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               
               {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-semibold shadow-md">
-                <Sparkles className="w-4 h-4 text-amber-400" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-green-500/40 text-green-300 text-xs sm:text-sm font-semibold shadow-md">
+                <Sparkles className="w-4 h-4 text-green-400" />
                 <span>Verified Islamic Scholars & E-Learning Platform</span>
               </div>
 
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight text-white">
                 Find Answers. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-400 to-green-500">
                   Learn Islam.
                 </span>{' '}
                 <br className="hidden sm:inline" />
@@ -117,7 +117,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <button
                   onClick={() => onNavigate('experts')}
-                  className="w-full sm:w-auto px-8 py-4 text-base font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-2xl shadow-lg hover:shadow-amber-500/25 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                  className="w-full sm:w-auto px-8 py-4 text-base font-extrabold text-white bg-gradient-to-r from-green-600 via-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-2xl shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
                 >
                   <span>Your First 5 Minutes FREE</span>
                   <ArrowRight className="w-5 h-5" />
@@ -127,7 +127,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   onClick={() => onNavigate('courses')}
                   className="w-full sm:w-auto px-7 py-4 text-base font-bold text-slate-200 bg-slate-800/90 hover:bg-slate-700 border border-slate-700 rounded-2xl transition-all flex items-center justify-center gap-2"
                 >
-                  <BookOpen className="w-5 h-5 text-amber-400" />
+                  <BookOpen className="w-5 h-5 text-green-400" />
                   <span>Explore Courses</span>
                 </button>
               </div>
@@ -139,7 +139,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <div className="text-xs text-slate-400 font-medium">Verified Scholars</div>
                 </div>
                 <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold font-heading text-amber-400">4.9/5</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold font-heading text-green-400">4.9/5</div>
                   <div className="text-xs text-slate-400 font-medium">User Rating</div>
                 </div>
                 <div>
@@ -153,14 +153,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Right Hero Feature Showcase */}
             <div className="lg:col-span-5 hidden lg:block">
               <div className="relative mx-auto max-w-md bg-slate-900/90 border border-slate-700/80 rounded-3xl p-6 shadow-2xl space-y-4">
-                <div className="text-amber-400 font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-amber-400" />
+                <div className="text-green-400 font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-green-400" />
                   <span>Platform Highlights</span>
                 </div>
                 
                 <div className="space-y-3 text-xs text-slate-200">
                   <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                    <div className="w-8 h-8 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center font-bold">
                       ✓
                     </div>
                     <div>
@@ -329,7 +329,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="bg-slate-950 text-white rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden space-y-8">
           
           <div className="max-w-3xl space-y-3">
-            <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold tracking-wider uppercase border border-amber-400/30">
+            <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs font-semibold tracking-wider uppercase border border-green-400/30">
               Why Choose Us
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
@@ -342,7 +342,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-slate-900/90 p-6 rounded-2xl border border-slate-800 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold font-heading text-white">Vetted Scholar Credentials</h3>
@@ -387,7 +387,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <button
               onClick={() => onNavigate('experts')}
-              className="px-8 py-4 text-sm font-extrabold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-2xl shadow-lg transition-colors"
+              className="px-8 py-4 text-sm font-extrabold text-white bg-green-700 hover:bg-green-600 rounded-2xl shadow-lg transition-colors"
             >
               Find an Expert Now
             </button>

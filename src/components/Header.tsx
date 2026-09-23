@@ -61,14 +61,14 @@ export const Header: React.FC<HeaderProps> = ({
             <img 
               src="/logo.png" 
               alt="Steadfast Deen" 
-              className="h-11 sm:h-13 w-auto object-contain bg-white/95 p-1 rounded-xl shadow-md border border-amber-400/40 group-hover:scale-105 transition-transform"
+              className="h-11 sm:h-13 w-auto object-contain bg-white/95 p-1 rounded-xl shadow-md border border-green-700/40 group-hover:scale-105 transition-transform"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/images/file_00000000ede8821195d4d82712923da5.png';
               }}
             />
             <div className="flex flex-col">
               <span className="text-lg sm:text-xl font-extrabold font-heading tracking-tight text-white flex items-center gap-1">
-                Steadfast <span className="text-amber-400">Deen</span>
+                Steadfast <span className="text-green-400">Deen</span>
               </span>
               <span className="text-[10px] text-slate-300 tracking-wider uppercase font-medium">Islamic Knowledge & Guidance</span>
             </div>
@@ -84,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => onNavigate(link.view)}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
                     isActive
-                      ? 'bg-blue-900/60 text-amber-300 border border-blue-700/50 font-semibold'
+                      ? 'bg-blue-900/60 text-green-300 border border-blue-700/50 font-semibold'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
                   }`}
                 >
@@ -103,7 +103,7 @@ export const Header: React.FC<HeaderProps> = ({
                 placeholder="Search topic or scholar..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-40 xl:w-52 pl-9 pr-3 py-1.5 text-xs rounded-full bg-slate-800 border border-slate-700 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
+                className="w-40 xl:w-52 pl-9 pr-3 py-1.5 text-xs rounded-full bg-slate-800 border border-slate-700 text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500 transition-all"
               />
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             </form>
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => onNavigate('dashboard')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 border transition-all ${
                   isAdmin
-                    ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 border-amber-300 shadow-sm'
+                    ? 'bg-gradient-to-r from-green-600 to-green-700 text-white border-green-500 shadow-sm'
                     : 'bg-blue-900/80 text-blue-200 border-blue-700/60 hover:bg-blue-800'
                 }`}
               >
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="px-4 py-2 text-xs xl:text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl shadow-md hover:shadow-lg transition-all border border-blue-500/30 flex items-center gap-1.5"
             >
               <span>Find an Expert</span>
-              <span className="text-amber-300">→</span>
+              <span className="text-green-300">→</span>
             </button>
           </div>
 
@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={() => onNavigate('experts')}
-              className="px-3 py-1.5 text-xs font-semibold text-slate-950 bg-amber-400 rounded-lg"
+              className="px-3 py-1.5 text-xs font-semibold text-white bg-green-700 rounded-lg"
             >
               Find Expert
             </button>
@@ -172,7 +172,7 @@ export const Header: React.FC<HeaderProps> = ({
               placeholder="Search topics, courses, or scholars..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full pl-9 pr-4 py-2 text-sm rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           </form>
@@ -190,11 +190,11 @@ export const Header: React.FC<HeaderProps> = ({
                   }}
                   className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium ${
                     isActive
-                      ? 'bg-blue-900/80 text-amber-300 font-semibold border border-blue-700/60'
+                      ? 'bg-blue-900/80 text-green-300 font-semibold border border-blue-700/60'
                       : 'text-slate-300 hover:bg-slate-800'
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-amber-400" />
+                  <Icon className="w-4 h-4 text-green-400" />
                   <span>{link.name}</span>
                 </button>
               );
@@ -216,7 +216,7 @@ export const Header: React.FC<HeaderProps> = ({
                 setIsMobileMenuOpen(false);
                 onNavigate('login');
               }}
-              className="flex-1 py-2 text-xs font-semibold text-center text-slate-900 bg-amber-400 rounded-lg"
+              className="flex-1 py-2 text-xs font-semibold text-center text-white bg-green-700 rounded-lg"
             >
               Account / Login
             </button>

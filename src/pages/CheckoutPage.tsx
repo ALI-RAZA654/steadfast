@@ -68,8 +68,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
       />
 
       {/* Demo Warning Banner */}
-      <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-xs sm:text-sm text-amber-900 flex items-center gap-3">
-        <Lock className="w-5 h-5 text-amber-600 shrink-0" />
+      <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-2xl text-xs sm:text-sm text-green-900 flex items-center gap-3">
+        <Lock className="w-5 h-5 text-green-600 shrink-0" />
         <span>
           <strong>Frontend Demo Mode:</strong> This checkout UI is prepared for future WooCommerce / Stripe payment integration. Clicking confirm will simulate a successful booking without charging money.
         </span>
@@ -98,7 +98,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   onClick={() => setPaymentMethod(pm.id as any)}
                   className={`py-3 px-2 rounded-2xl border text-xs font-bold flex flex-col items-center gap-1 transition-all ${
                     isSelected
-                      ? 'bg-slate-900 text-amber-400 border-slate-900 shadow-md'
+                      ? 'bg-slate-900 text-green-400 border-slate-900 shadow-md'
                       : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
@@ -117,7 +117,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   <input
                     type="text"
                     defaultValue="Tariq Al-Mansoor"
-                    className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                    className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
                   />
                 </div>
 
@@ -128,7 +128,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       type="text"
                       value={cardNumber}
                       onChange={(e) => setCardNumber(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none font-mono"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none font-mono"
                     />
                     <CreditCard className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   </div>
@@ -141,7 +141,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       type="text"
                       value={cardExpiry}
                       onChange={(e) => setCardExpiry(e.target.value)}
-                      className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none font-mono"
+                      className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none font-mono"
                     />
                   </div>
                   <div>
@@ -150,7 +150,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       type="text"
                       value={cardCvc}
                       onChange={(e) => setCardCvc(e.target.value)}
-                      className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none font-mono"
+                      className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none font-mono"
                     />
                   </div>
                 </div>
@@ -176,9 +176,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
             <button
               type="submit"
-              className="w-full py-4 text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full py-4 text-sm font-bold text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2"
             >
-              <span>Pay & Confirm Booking (${totalAmount})</span>
+              <span>Pay & Confirm Booking (₹{totalAmount})</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
@@ -196,7 +196,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             </div>
             <div className="flex justify-between py-1 border-b border-slate-800/80">
               <span className="text-slate-400">Format:</span>
-              <span className="font-semibold capitalize text-amber-300">{consultationType} Consultation</span>
+              <span className="font-semibold capitalize text-green-300">{consultationType} Consultation</span>
             </div>
             <div className="flex justify-between py-1 border-b border-slate-800/80">
               <span className="text-slate-400">Date & Time:</span>
@@ -208,7 +208,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             </div>
             <div className="flex justify-between py-2 text-sm font-bold border-t border-slate-700">
               <span>Total Amount:</span>
-              <span className="text-amber-400 text-lg font-heading">${totalAmount}</span>
+              <span className="text-green-400 text-lg font-heading">₹{totalAmount}</span>
             </div>
           </div>
 

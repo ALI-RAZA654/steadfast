@@ -23,13 +23,13 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onSelectCourse }
         />
         
         {/* Category Tag */}
-        <span className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-amber-300 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-slate-700/60 shadow-sm">
+        <span className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-green-300 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-slate-700/60 shadow-sm">
           {course.category}
         </span>
 
         {/* Free / Paid Price Tag */}
-        <span className="absolute top-3 right-3 bg-amber-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-          {course.isFree ? 'FREE' : `$${course.price}`}
+        <span className="absolute top-3 right-3 bg-green-700 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+          {course.isFree ? 'FREE' : `₹${course.price}`}
         </span>
       </div>
 
@@ -69,7 +69,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, onSelectCourse }
               {course.lessonCount} Lessons
             </span>
             <span className="flex items-center gap-1 font-medium text-slate-700">
-              <Clock className="w-3.5 h-3.5 text-amber-600" />
+              <Clock className="w-3.5 h-3.5 text-green-600" />
               {course.duration}
             </span>
             <span className="flex items-center gap-1 font-medium text-slate-700">

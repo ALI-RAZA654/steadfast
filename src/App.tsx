@@ -97,7 +97,7 @@ export function App() {
   const selectedArticle = articlesData.find(a => a.id === viewParams.articleId) || articlesData[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-amber-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-green-700 selection:text-white">
       
       {/* Toast Notification Container */}
       <Toast toast={toast} onClose={() => setToast(null)} />

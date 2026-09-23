@@ -44,7 +44,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
             <VerifiedBadge size="sm" showText={true} />
             <div className="mt-2 text-right">
               <span className="text-lg font-bold font-heading text-slate-900">
-                ${expert.ratePerMin}
+                ₹{expert.ratePerMin}
               </span>
               <span className="text-xs text-slate-500 font-normal"> / min</span>
             </div>
@@ -62,7 +62,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
           >
             {expert.name}
           </h3>
-          <p className="text-xs font-medium text-amber-700 mt-0.5">
+          <p className="text-xs font-medium text-green-700 mt-0.5">
             {expert.title}
           </p>
           <p className="text-xs text-slate-600 mt-1 line-clamp-1">

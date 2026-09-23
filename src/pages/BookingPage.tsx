@@ -107,7 +107,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
       {/* Booking Header */}
       <div className="text-center space-y-2">
-        <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold tracking-wider uppercase border border-amber-200">
+        <span className="px-3 py-1 rounded-full bg-green-100 text-green-900 text-xs font-semibold tracking-wider uppercase border border-green-200">
           Step-by-Step Scheduling
         </span>
         <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900">
@@ -131,7 +131,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
               onClick={() => stepNum <= currentStep && setCurrentStep(stepNum)}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-all ${
                 isActive
-                  ? 'bg-slate-900 text-amber-400 font-bold shadow-xs'
+                  ? 'bg-slate-900 text-green-400 font-bold shadow-xs'
                   : isDone
                   ? 'bg-emerald-100 text-emerald-900 font-medium'
                   : 'bg-slate-50 text-slate-400'
@@ -159,7 +159,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                     onClick={() => setSelectedExpertId(exp.id)}
                     className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-4 ${
                       isSelected
-                        ? 'border-amber-500 bg-amber-50/50 shadow-md'
+                        ? 'border-green-600 bg-green-50/50 shadow-md'
                         : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
@@ -173,8 +173,8 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                         <h4 className="text-sm font-bold text-slate-900 truncate">{exp.name}</h4>
                         <VerifiedBadge size="sm" showText={false} />
                       </div>
-                      <p className="text-xs text-amber-800 font-medium truncate">{exp.specialization}</p>
-                      <p className="text-xs font-bold text-slate-800 mt-1">${exp.flatSessionPrice} / 30 mins</p>
+                      <p className="text-xs text-green-800 font-medium truncate">{exp.specialization}</p>
+                      <p className="text-xs font-bold text-slate-800 mt-1">₹{exp.flatSessionPrice} / 30 mins</p>
                     </div>
                   </div>
                 );
@@ -206,7 +206,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                         : 'border-slate-200 bg-white text-slate-800 hover:border-slate-300'
                     }`}
                   >
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-100 text-blue-700'}`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isSelected ? 'bg-green-700 text-white' : 'bg-slate-100 text-blue-700'}`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <h4 className="text-sm font-bold">{item.label}</h4>
@@ -231,7 +231,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                     onClick={() => setSelectedDate(d.date)}
                     className={`p-3.5 rounded-2xl border text-center transition-all ${
                       isSelected
-                        ? 'bg-slate-900 text-amber-400 border-slate-900 font-bold shadow-md'
+                        ? 'bg-slate-900 text-green-400 border-slate-900 font-bold shadow-md'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                     }`}
                   >
@@ -257,7 +257,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                     onClick={() => setSelectedTimeSlot(slot)}
                     className={`p-3.5 rounded-2xl border text-center font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 ${
                       isSelected
-                        ? 'bg-amber-500 text-slate-950 border-amber-500 font-bold shadow-md'
+                        ? 'bg-green-700 text-white border-green-700 font-bold shadow-md'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                     }`}
                   >
@@ -282,7 +282,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                     type="text"
                     value={userFullName}
                     onChange={(e) => setUserFullName(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                    className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
                   />
                   <User className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -295,7 +295,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                     type="email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                    className="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
                   />
                   <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -308,7 +308,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                 type="text"
                 value={userPhone}
                 onChange={(e) => setUserPhone(e.target.value)}
-                className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
               />
             </div>
 
@@ -319,7 +319,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                 value={userQuestion}
                 onChange={(e) => setUserQuestion(e.target.value)}
                 placeholder="Briefly describe your topic or legal question so the scholar can prepare..."
-                className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                className="w-full p-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
               />
             </div>
           </div>
@@ -339,7 +339,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                 />
                 <div>
                   <h4 className="font-bold text-slate-900 text-base">{selectedExpert.name}</h4>
-                  <p className="text-amber-800 text-xs font-medium">{selectedExpert.title}</p>
+                  <p className="text-green-800 text-xs font-medium">{selectedExpert.title}</p>
                 </div>
               </div>
 
@@ -358,7 +358,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
                 </div>
                 <div>
                   <span className="text-slate-400 text-xs block">Total Price:</span>
-                  <span className="font-bold text-amber-700 text-base font-heading">${selectedExpert.flatSessionPrice}</span>
+                  <span className="font-bold text-green-700 text-base font-heading">₹{selectedExpert.flatSessionPrice}</span>
                 </div>
               </div>
 
@@ -384,7 +384,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
           <button
             onClick={handleNextStep}
-            className="px-7 py-3 text-xs sm:text-sm font-bold text-slate-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-md transition-colors flex items-center gap-2"
+            className="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-green-700 hover:bg-green-600 rounded-xl shadow-md transition-colors flex items-center gap-2"
           >
             <span>{currentStep === 6 ? 'Continue to Payment' : 'Next Step'}</span>
             <ArrowRight className="w-4 h-4" />

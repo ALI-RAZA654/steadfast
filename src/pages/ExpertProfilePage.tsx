@@ -100,7 +100,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                 <p className="text-sm font-semibold text-slate-600 mt-0.5">
                   {expert.title} | Islamic Finance
                 </p>
-                <div className="mt-2 flex items-center justify-center gap-1.5 text-amber-500 font-bold text-sm">
+                <div className="mt-2 flex items-center justify-center gap-1.5 text-green-600 font-bold text-sm">
                   <span>★★★★★</span>
                   <span className="text-slate-900 font-extrabold">4.8</span>
                   <span className="text-slate-500 text-xs font-normal">(320 Reviews)</span>
@@ -187,7 +187,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`py-3 px-4 text-xs sm:text-sm font-semibold transition-all border-b-2 ${
                   activeTab === tab.id
-                    ? 'border-amber-500 text-amber-800'
+                    ? 'border-green-600 text-green-800'
                     : 'border-transparent text-slate-500 hover:text-slate-900'
                 }`}
               >
@@ -326,7 +326,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                   onClick={() => setSelectedMethod('chat')}
                   className={`py-2.5 text-xs font-bold rounded-xl border flex flex-col items-center gap-1 transition-all ${
                     selectedMethod === 'chat'
-                      ? 'bg-blue-900 text-amber-300 border-blue-900 shadow-sm'
+                      ? 'bg-blue-900 text-green-300 border-blue-900 shadow-sm'
                       : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
@@ -339,7 +339,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                   onClick={() => setSelectedMethod('voice')}
                   className={`py-2.5 text-xs font-bold rounded-xl border flex flex-col items-center gap-1 transition-all ${
                     selectedMethod === 'voice'
-                      ? 'bg-blue-900 text-amber-300 border-blue-900 shadow-sm'
+                      ? 'bg-blue-900 text-green-300 border-blue-900 shadow-sm'
                       : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
@@ -352,7 +352,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                   onClick={() => setSelectedMethod('video')}
                   className={`py-2.5 text-xs font-bold rounded-xl border flex flex-col items-center gap-1 transition-all ${
                     selectedMethod === 'video'
-                      ? 'bg-blue-900 text-amber-300 border-blue-900 shadow-sm'
+                      ? 'bg-blue-900 text-green-300 border-blue-900 shadow-sm'
                       : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
@@ -366,15 +366,15 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
               <div className="flex justify-between text-xs text-slate-600">
                 <span>Rate:</span>
-                <span className="font-semibold text-slate-900">${expert.ratePerMin} / min</span>
+                <span className="font-semibold text-slate-900">₹{expert.ratePerMin} / min</span>
               </div>
               <div className="flex justify-between text-xs text-slate-600">
                 <span>Standard Session (30 mins):</span>
-                <span className="font-bold text-slate-900">${expert.flatSessionPrice}</span>
+                <span className="font-bold text-slate-900">₹{expert.flatSessionPrice}</span>
               </div>
               <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-bold text-slate-900">
                 <span>Total Due:</span>
-                <span className="text-amber-700 font-heading text-base">${expert.flatSessionPrice}</span>
+                <span className="text-green-700 font-heading text-base">₹{expert.flatSessionPrice}</span>
               </div>
             </div>
 
@@ -387,7 +387,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
             {/* CTA Button */}
             <button
               onClick={() => onBookConsultation(expert.id, selectedMethod)}
-              className="w-full py-3.5 text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3.5 text-sm font-bold text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               <span>Proceed to Book Slot</span>

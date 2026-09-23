@@ -51,7 +51,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
       {/* Course Hero Banner */}
       <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 relative overflow-hidden">
         <div className="max-w-3xl space-y-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold uppercase tracking-wider border border-amber-400/30">
+          <span className="inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs font-semibold uppercase tracking-wider border border-green-400/30">
             {course.category}
           </span>
           <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-white tracking-tight">
@@ -66,7 +66,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
               <img
                 src={course.instructor.avatar}
                 alt={course.instructor.name}
-                className="w-7 h-7 rounded-full border border-amber-400 object-cover"
+                className="w-7 h-7 rounded-full border border-green-600 object-cover"
               />
               <span className="font-semibold text-slate-200">{course.instructor.name}</span>
             </div>
@@ -122,7 +122,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
                           {sec.lessons.map((les) => (
                             <div key={les.id} className="pt-2 flex items-center justify-between text-xs text-slate-700">
                               <div className="flex items-center gap-2">
-                                <PlayCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                                <PlayCircle className="w-4 h-4 text-green-600 shrink-0" />
                                 <span className="font-medium">{les.title}</span>
                               </div>
                               <span className="text-slate-400 text-[11px] font-mono">{les.duration}</span>
@@ -152,7 +152,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
               />
               <div>
                 <h3 className="text-base font-bold text-slate-900">{course.instructor.name}</h3>
-                <p className="text-xs text-amber-800 font-medium">{course.instructor.title}</p>
+                <p className="text-xs text-green-800 font-medium">{course.instructor.title}</p>
                 <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                   Certified Islamic scholar dedicated to providing clear, accessible, and structured authentic knowledge for students worldwide.
                 </p>
@@ -173,14 +173,14 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
                 className="w-full h-full object-cover opacity-90"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40">
-                <PlayCircle className="w-12 h-12 text-amber-400" />
+                <PlayCircle className="w-12 h-12 text-green-400" />
               </div>
             </div>
 
             <div className="flex items-baseline justify-between">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Tuition Fee</span>
               <span className="text-3xl font-extrabold font-heading text-slate-900">
-                {course.isFree ? 'FREE' : `$${course.price}`}
+                {course.isFree ? 'FREE' : `₹${course.price}`}
               </span>
             </div>
 
@@ -201,7 +201,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
 
             <button
               onClick={handleEnrollClick}
-              className="w-full py-3.5 text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3.5 text-sm font-bold text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
             >
               <span>Enroll & Start Learning</span>
               <ArrowRight className="w-4 h-4" />
