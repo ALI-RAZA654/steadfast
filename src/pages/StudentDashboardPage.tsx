@@ -201,7 +201,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
                 <div key={bk.id} className="p-4 rounded-2xl border border-slate-100 bg-slate-50 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold">
-                      {bk.consultationType === 'video' ? 'HD' : 'QA'}
+                      {bk.consultationType === 'voice' ? 'VOICE' : 'CHAT'}
                     </div>
                     <div>
                       <h4 className="font-bold text-slate-900">{bk.expertName}</h4>

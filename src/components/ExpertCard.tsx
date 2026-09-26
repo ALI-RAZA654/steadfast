@@ -7,7 +7,7 @@ import { Phone, MessageSquare, Video, UserCheck, Clock, Languages, ChevronRight 
 interface ExpertCardProps {
   expert: Expert;
   onViewProfile: (expertId: string) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
   compact?: boolean;
 }
 
@@ -93,7 +93,7 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
 
       {/* Action Buttons */}
       <div className="p-4 pt-3 border-t border-slate-100 bg-slate-50/50 space-y-2">
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => onBookConsultation(expert.id, 'voice')}
             className="py-2 px-2 text-xs font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all flex items-center justify-center gap-1 shadow-sm"
@@ -108,14 +108,6 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
           >
             <MessageSquare className="w-3.5 h-3.5" />
             <span>Chat</span>
-          </button>
-          
-          <button
-            onClick={() => onBookConsultation(expert.id, 'video')}
-            className="py-2 px-2 text-xs font-bold rounded-xl border border-blue-600 text-blue-600 hover:bg-blue-50 transition-all flex items-center justify-center gap-1"
-          >
-            <Video className="w-3.5 h-3.5" />
-            <span>Video</span>
           </button>
         </div>
 

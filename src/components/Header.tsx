@@ -36,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
   const navLinks: { name: string; view: PageView; icon: any }[] = [
     { name: 'Home', view: 'home', icon: Sparkles },
     { name: 'Learn', view: 'courses', icon: BookOpen },
+    { name: 'MCQ Test', view: 'quiz', icon: Sparkles },
     { name: 'Experts', view: 'experts', icon: Users },
     { name: 'Consultations', view: 'categories', icon: Calendar },
     { name: 'Resources', view: 'resources', icon: FileText },
@@ -132,23 +133,24 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             )}
 
-            {/* Primary CTA */}
+            {/* MCQ Quiz CTA Button */}
             <button
-              onClick={() => onNavigate('experts')}
-              className="px-4 py-2 text-xs xl:text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl shadow-md hover:shadow-lg transition-all border border-blue-500/30 flex items-center gap-1.5"
+              onClick={() => onNavigate('quiz')}
+              className="px-4 py-2 text-xs xl:text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 rounded-xl shadow-md hover:shadow-lg transition-all border border-emerald-500/30 flex items-center gap-1.5"
             >
-              <span>Find an Expert</span>
-              <span className="text-green-300">→</span>
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>MCQ Course Test</span>
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
-              onClick={() => onNavigate('experts')}
-              className="px-3 py-1.5 text-xs font-semibold text-white bg-green-700 rounded-lg"
+              onClick={() => onNavigate('quiz')}
+              className="px-3 py-1.5 text-xs font-semibold text-white bg-emerald-700 rounded-lg flex items-center gap-1"
             >
-              Find Expert
+              <Sparkles className="w-3 h-3 text-amber-300" />
+              <span>MCQ Quiz</span>
             </button>
 
             <button

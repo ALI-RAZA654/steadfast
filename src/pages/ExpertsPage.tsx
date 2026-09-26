@@ -8,7 +8,7 @@ interface ExpertsPageProps {
   experts: Expert[];
   categories: Category[];
   onNavigate: (view: PageView, params?: any) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
   initialSearch?: string;
   initialCategory?: string;
 }

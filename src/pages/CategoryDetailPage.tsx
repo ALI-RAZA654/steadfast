@@ -12,7 +12,7 @@ interface CategoryDetailPageProps {
   courses: Course[];
   articles: Article[];
   onNavigate: (view: PageView, params?: any) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
 }
 
 export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({

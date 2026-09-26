@@ -20,7 +20,7 @@ export const mockBookings: Booking[] = [
     expertName: 'Mufti Ahmed Khan',
     expertTitle: 'Mufti & Islamic Finance Consultant',
     expertAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
-    consultationType: 'video',
+    consultationType: 'voice',
     date: 'Sep 18, 2026',
     timeSlot: '02:00 PM',
     durationMins: 30,

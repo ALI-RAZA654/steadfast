@@ -28,7 +28,7 @@ interface BookingPageProps {
 export const BookingPage: React.FC<BookingPageProps> = ({
   experts,
   initialExpertId,
-  initialMethod = 'video',
+  initialMethod = 'voice',
   onNavigate,
   onConfirmBookingDetails
 }) => {
@@ -187,11 +187,10 @@ export const BookingPage: React.FC<BookingPageProps> = ({
         {currentStep === 2 && (
           <div className="space-y-4">
             <h3 className="text-lg font-bold font-heading text-slate-900">Select Consultation Format</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { type: 'chat', label: 'Private Chat', icon: MessageSquare, desc: 'Real-time text & document sharing' },
-                { type: 'voice', label: 'Voice Call', icon: Phone, desc: 'Browser phone audio discussion' },
-                { type: 'video', label: 'HD Video Call', icon: Video, desc: 'Full 1-on-1 face-to-face video session' }
+                { type: 'voice', label: 'Voice Call', icon: Phone, desc: 'Browser phone audio discussion' }
               ].map((item) => {
                 const Icon = item.icon;
                 const isSelected = consultationType === item.type;

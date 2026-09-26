@@ -36,7 +36,7 @@ interface HomePageProps {
   experts: Expert[];
   courses: Course[];
   onNavigate: (view: PageView, params?: any) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -150,50 +150,57 @@ export const HomePage: React.FC<HomePageProps> = ({
 
             </div>
 
-            {/* Right Hero Feature Showcase */}
+            {/* Right Hero Feature Showcase - Interactive MCQ Course Finder Widget */}
             <div className="lg:col-span-5 hidden lg:block">
-              <div className="relative mx-auto max-w-md bg-slate-900/90 border border-slate-700/80 rounded-3xl p-6 shadow-2xl space-y-4">
-                <div className="text-green-400 font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-green-400" />
-                  <span>Platform Highlights</span>
+              <div className="relative mx-auto max-w-md bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-emerald-500/40 rounded-3xl p-6 shadow-2xl space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="text-emerald-400 font-extrabold text-xs uppercase tracking-wider flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <span>AI-Powered Course Recommender</span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30">
+                    1-Min MCQ Test
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-xl font-extrabold text-white font-heading leading-snug">
+                    Unsure Which Course Fits You Best?
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    Answer 4 quick questions about your interest, knowledge level &amp; goals to get an instant tailored recommendation!
+                  </p>
                 </div>
                 
-                <div className="space-y-3 text-xs text-slate-200">
+                <div className="space-y-2 text-xs text-slate-200">
                   <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-8 h-8 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center font-bold">
-                      ✓
+                    <div className="w-7 h-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
+                      1
                     </div>
                     <div>
-                      <div className="font-extrabold text-white text-sm">Verified Muftis &amp; Scholars</div>
-                      <div className="text-slate-400 text-[11px]">Strict Ifta &amp; Alimiyyah degree verification</div>
+                      <div className="font-extrabold text-white text-xs">Select Your Interest &amp; Knowledge Level</div>
+                      <div className="text-slate-400 text-[11px]">Quran, Fiqh, Finance, Hadith or Seerah</div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
-                      🔒
+                    <div className="w-7 h-7 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs">
+                      2
                     </div>
                     <div>
-                      <div className="font-extrabold text-white text-sm">256-bit Private Sessions</div>
-                      <div className="text-slate-400 text-[11px]">100% confidential 1-on-1 consultations</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                      🎁
-                    </div>
-                    <div>
-                      <div className="font-extrabold text-white text-sm">First 5 Minutes Free</div>
-                      <div className="text-slate-400 text-[11px]">Test live voice, video, or chat guidance</div>
+                      <div className="font-extrabold text-amber-300 text-xs">“Aapke liye ye course suitable hai”</div>
+                      <div className="text-slate-400 text-[11px]">Instant analysis with match percentage</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-medium">
-                  <span>Authorized Shariah Advisory</span>
-                  <span className="text-emerald-400 font-bold">Instant Online</span>
-                </div>
+                <button
+                  onClick={() => onNavigate('quiz')}
+                  className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center justify-center gap-2 border border-emerald-400/30"
+                >
+                  <span>Start MCQ Course Test</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
 
@@ -386,10 +393,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <button
-              onClick={() => onNavigate('experts')}
-              className="px-8 py-4 text-sm font-extrabold text-white bg-green-700 hover:bg-green-600 rounded-2xl shadow-lg transition-colors"
+              onClick={() => onNavigate('quiz')}
+              className="px-8 py-4 text-sm font-extrabold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 rounded-2xl shadow-lg transition-all border border-emerald-500/30 flex items-center gap-2"
             >
-              Find an Expert Now
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>Take MCQ Course Test</span>
             </button>
             <button
               onClick={() => onNavigate('courses')}

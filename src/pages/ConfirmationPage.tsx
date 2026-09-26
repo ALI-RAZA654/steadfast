@@ -15,7 +15,7 @@ export const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
     id: 'SD-881920',
     expertName: 'Mufti Ahmed Khan',
     expertTitle: 'Mufti & Islamic Finance Consultant',
-    consultationType: 'video',
+    consultationType: 'voice',
     date: 'Sep 20, 2026',
     timeSlot: '02:00 PM',
     totalAmount: 45

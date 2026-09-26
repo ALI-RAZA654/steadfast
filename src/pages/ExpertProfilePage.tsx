@@ -21,7 +21,7 @@ import {
 interface ExpertProfilePageProps {
   expert: Expert;
   onNavigate: (view: PageView, params?: any) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
 }
 
 export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
@@ -29,8 +29,8 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
   onNavigate,
   onBookConsultation
 }) => {
-  const [activeTab, setActiveTab] = useState<'about' | 'subjects' | 'services' | 'reviews'>('about');
-  const [selectedMethod, setSelectedMethod] = useState<'chat' | 'voice' | 'video'>('video');
+  const [activeTab, setActiveTab] = useState<'about' | 'subjects' | 'reviews'>('about');
+  const [selectedMethod, setSelectedMethod] = useState<'chat' | 'voice'>('voice');
 
   const reviewsList = [
     {
@@ -125,7 +125,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
               </div>
 
               {/* Action Buttons Row */}
-              <div className="w-full max-w-md grid grid-cols-3 gap-2 pt-1">
+              <div className="w-full max-w-md grid grid-cols-2 gap-2 pt-1">
                 <button
                   onClick={() => onBookConsultation(expert.id, 'voice')}
                   className="py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md transition-all"
@@ -139,13 +139,6 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Chat</span>
-                </button>
-                <button
-                  onClick={() => onBookConsultation(expert.id, 'video')}
-                  className="py-3 px-4 rounded-xl border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-extrabold text-sm flex items-center justify-center gap-2 transition-all"
-                >
-                  <Video className="w-4 h-4" />
-                  <span>Video</span>
                 </button>
               </div>
 
@@ -179,7 +172,6 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
             {[
               { id: 'about', label: 'About Me' },
               { id: 'subjects', label: 'Subjects & Qualifications' },
-              { id: 'services', label: 'Consultation Services' },
               { id: 'reviews', label: `Reviews (${expert.reviewCount})` }
             ].map((tab) => (
               <button
@@ -257,31 +249,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
             </div>
           )}
 
-          {/* Tab 3: Consultation Services */}
-          {activeTab === 'services' && (
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 space-y-6">
-              <h3 className="text-lg font-bold font-heading text-slate-900">Available Consultation Formats</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-2">
-                  <MessageSquare className="w-6 h-6 text-blue-600" />
-                  <h4 className="text-sm font-bold text-slate-900">Private Chat</h4>
-                  <p className="text-xs text-slate-600">Text-based confidential Q&A session with attachment sharing.</p>
-                </div>
 
-                <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
-                  <Phone className="w-6 h-6 text-emerald-600" />
-                  <h4 className="text-sm font-bold text-slate-900">Voice Call</h4>
-                  <p className="text-xs text-slate-600">Direct encrypted browser phone call with live discussion.</p>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-2">
-                  <Video className="w-6 h-6 text-amber-600" />
-                  <h4 className="text-sm font-bold text-slate-900">HD Video Session</h4>
-                  <p className="text-xs text-slate-600">Full 1-on-1 video conference for detailed consultation.</p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Tab 4: Reviews */}
           {activeTab === 'reviews' && (
@@ -320,7 +288,7 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
             {/* Select Consultation Method */}
             <div className="space-y-2">
               <label className="text-xs font-semibold text-slate-700">1. Select Consultation Method:</label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => setSelectedMethod('chat')}
@@ -345,19 +313,6 @@ export const ExpertProfilePage: React.FC<ExpertProfilePageProps> = ({
                 >
                   <Phone className="w-4 h-4" />
                   <span>Voice</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedMethod('video')}
-                  className={`py-2.5 text-xs font-bold rounded-xl border flex flex-col items-center gap-1 transition-all ${
-                    selectedMethod === 'video'
-                      ? 'bg-blue-900 text-green-300 border-blue-900 shadow-sm'
-                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                  }`}
-                >
-                  <Video className="w-4 h-4" />
-                  <span>Video</span>
                 </button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-export type ConsultationType = 'chat' | 'voice' | 'video';
+export type ConsultationType = 'chat' | 'voice';
 
 export type UserRole = 'student' | 'expert' | 'admin';
 
@@ -46,6 +46,8 @@ export interface Expert {
   experienceYears: number;
   languages: string[];
   isOnline: boolean;
+  isBlocked?: boolean;
+  totalRevenue?: number;
   ratePerMin: number;
   flatSessionPrice: number;
   bio: string;
@@ -58,6 +60,43 @@ export interface Expert {
     days: string[]; // e.g. ['Mon', 'Tue', 'Wed']
     times: string[]; // e.g. ['10:00 AM', '02:00 PM', '06:00 PM']
   };
+}
+
+export interface TopUser {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+  totalSpent: number;
+  totalSessions: number;
+  totalHours: number;
+  coursesPurchased: number;
+  lastActive: string;
+  status: 'VIP' | 'Active' | 'Regular';
+}
+
+export interface UserExpertTime {
+  id: string;
+  userName: string;
+  userAvatar: string;
+  expertName: string;
+  expertAvatar: string;
+  expertTitle: string;
+  totalMinutes: number;
+  sessionCount: number;
+  totalSpent: number;
+  lastConsultationDate: string;
+}
+
+export interface AdminComment {
+  id: string;
+  userName: string;
+  userAvatar: string;
+  targetName: string;
+  targetType: 'expert' | 'course';
+  rating: number;
+  commentText: string;
+  date: string;
 }
 
 export interface Lesson {
@@ -201,5 +240,6 @@ export type PageView =
   | 'login'
   | 'register'
   | 'profile'
+  | 'quiz'
   | 'screens-overview';
 

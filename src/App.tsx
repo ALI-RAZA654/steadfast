@@ -40,6 +40,7 @@ import { ContactPage } from './pages/ContactPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { QuizPage } from './pages/QuizPage';
 
 // Call icons
 import { Phone, Video, Mic, MicOff, VideoOff, PhoneOff, ShieldCheck } from 'lucide-react';
@@ -81,7 +82,7 @@ export function App() {
   };
 
   // Direct Book Consultation launcher
-  const handleBookConsultation = (expertId: string, method: 'chat' | 'voice' | 'video') => {
+  const handleBookConsultation = (expertId: string, method: 'chat' | 'voice') => {
     handleNavigate('booking', { expertId, method });
   };
 
@@ -319,6 +320,9 @@ export function App() {
               showToastNotification('success', 'Profile updated successfully!');
             }}
           />
+        )}
+        {currentView === 'quiz' && (
+          <QuizPage onNavigate={handleNavigate} />
         )}
       </main>
 

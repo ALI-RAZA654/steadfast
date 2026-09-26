@@ -35,7 +35,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
   };
   const date = bookingData?.date || 'Sep 20, 2026';
   const timeSlot = bookingData?.timeSlot || '02:00 PM';
-  const consultationType = bookingData?.consultationType || 'video';
+  const consultationType = bookingData?.consultationType || 'voice';
   const totalAmount = expert.flatSessionPrice || 45;
 
   const handlePayAndConfirm = (e: React.FormEvent) => {

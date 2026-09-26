@@ -189,14 +189,6 @@ export const ChatSessionPage: React.FC<ChatSessionPageProps> = ({
               >
                 <Phone className="w-4 h-4" />
               </button>
-
-              <button
-                onClick={() => triggerCall('video')}
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-amber-50 text-slate-700 hover:text-amber-800 transition-colors border border-slate-200"
-                title="Start HD Video Session"
-              >
-                <Video className="w-4 h-4" />
-              </button>
             </div>
           </div>
 
