@@ -87,120 +87,61 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="absolute bottom-0 right-10 w-96 h-96 bg-green-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
             
-            {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              
-              {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-green-500/40 text-green-300 text-xs sm:text-sm font-semibold shadow-md">
-                <Sparkles className="w-4 h-4 text-green-400" />
-                <span>Verified Islamic Scholars & E-Learning Platform</span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight text-white">
-                Find Answers. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-400 to-green-500">
-                  Learn Islam.
-                </span>{' '}
-                <br className="hidden sm:inline" />
-                Consult Experts. Grow in Deen.
-              </h1>
-
-              {/* Supporting Text */}
-              <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-normal">
-                Learn authentic Islamic knowledge and connect with verified Muftis, scholars, and specialists for live 1-on-1 consultations, daily masail, and structured courses.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <button
-                  onClick={() => onNavigate('experts')}
-                  className="w-full sm:w-auto px-8 py-4 text-base font-extrabold text-white bg-gradient-to-r from-green-600 via-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-2xl shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
-                >
-                  <span>Your First 5 Minutes FREE</span>
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-
-                <button
-                  onClick={() => onNavigate('courses')}
-                  className="w-full sm:w-auto px-7 py-4 text-base font-bold text-slate-200 bg-slate-800/90 hover:bg-slate-700 border border-slate-700 rounded-2xl transition-all flex items-center justify-center gap-2"
-                >
-                  <BookOpen className="w-5 h-5 text-green-400" />
-                  <span>Explore Courses</span>
-                </button>
-              </div>
-
-              {/* Trust Metrics */}
-              <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold font-heading text-white">100+</div>
-                  <div className="text-xs text-slate-400 font-medium">Verified Scholars</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold font-heading text-green-400">4.9/5</div>
-                  <div className="text-xs text-slate-400 font-medium">User Rating</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold font-heading text-white">100%</div>
-                  <div className="text-xs text-slate-400 font-medium">Private & Secure</div>
-                </div>
-              </div>
-
+            {/* Trust Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-green-500/40 text-green-300 text-xs sm:text-sm font-semibold shadow-md">
+              <Sparkles className="w-4 h-4 text-green-400" />
+              <span>Verified Islamic Scholars &amp; E-Learning Platform</span>
             </div>
 
-            {/* Right Hero Feature Showcase - Interactive MCQ Course Finder Widget */}
-            <div className="lg:col-span-5 hidden lg:block">
-              <div className="relative mx-auto max-w-md bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-emerald-500/40 rounded-3xl p-6 shadow-2xl space-y-5">
-                <div className="flex items-center justify-between">
-                  <div className="text-emerald-400 font-extrabold text-xs uppercase tracking-wider flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-amber-300" />
-                    <span>AI-Powered Course Recommender</span>
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30">
-                    1-Min MCQ Test
-                  </span>
-                </div>
+            {/* Main Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-tight text-white">
+              Find Answers. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-400 to-green-500">
+                Learn Islam.
+              </span>{' '}
+              <br className="hidden sm:inline" />
+              Consult Experts. Grow in Deen.
+            </h1>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-extrabold text-white font-heading leading-snug">
-                    Unsure Which Course Fits You Best?
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Answer 4 quick questions about your interest, knowledge level &amp; goals to get an instant tailored recommendation!
-                  </p>
-                </div>
-                
-                <div className="space-y-2 text-xs text-slate-200">
-                  <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-7 h-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">
-                      1
-                    </div>
-                    <div>
-                      <div className="font-extrabold text-white text-xs">Select Your Interest &amp; Knowledge Level</div>
-                      <div className="text-slate-400 text-[11px]">Quran, Fiqh, Finance, Hadith or Seerah</div>
-                    </div>
-                  </div>
+            {/* Supporting Text */}
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mx-auto font-normal">
+              Learn authentic Islamic knowledge and connect with verified Muftis, scholars, and specialists for live 1-on-1 consultations, daily masail, and structured courses.
+            </p>
 
-                  <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/60">
-                    <div className="w-7 h-7 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs">
-                      2
-                    </div>
-                    <div>
-                      <div className="font-extrabold text-amber-300 text-xs">“Aapke liye ye course suitable hai”</div>
-                      <div className="text-slate-400 text-[11px]">Instant analysis with match percentage</div>
-                    </div>
-                  </div>
-                </div>
+            {/* Action Buttons */}
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => onNavigate('experts')}
+                className="w-full sm:w-auto px-8 py-4 text-base font-extrabold text-white bg-gradient-to-r from-green-600 via-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-2xl shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+              >
+                <span>Your First 5 Minutes FREE</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
 
-                <button
-                  onClick={() => onNavigate('quiz')}
-                  className="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-500/20 transition-all flex items-center justify-center gap-2 border border-emerald-400/30"
-                >
-                  <span>Start MCQ Course Test</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+              <button
+                onClick={() => onNavigate('courses')}
+                className="w-full sm:w-auto px-7 py-4 text-base font-bold text-slate-200 bg-slate-800/90 hover:bg-slate-700 border border-slate-700 rounded-2xl transition-all flex items-center justify-center gap-2"
+              >
+                <BookOpen className="w-5 h-5 text-green-400" />
+                <span>Explore Courses</span>
+              </button>
+            </div>
+
+            {/* Trust Metrics */}
+            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg mx-auto text-center">
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold font-heading text-white">100+</div>
+                <div className="text-xs text-slate-400 font-medium">Verified Scholars</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold font-heading text-green-400">4.9/5</div>
+                <div className="text-xs text-slate-400 font-medium">User Rating</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold font-heading text-white">100%</div>
+                <div className="text-xs text-slate-400 font-medium">Private &amp; Secure</div>
               </div>
             </div>
 
@@ -393,11 +334,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <button
-              onClick={() => onNavigate('quiz')}
-              className="px-8 py-4 text-sm font-extrabold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 rounded-2xl shadow-lg transition-all border border-emerald-500/30 flex items-center gap-2"
+              onClick={() => onNavigate('experts')}
+              className="px-8 py-4 text-sm font-extrabold text-white bg-gradient-to-r from-green-600 via-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-2xl shadow-lg transition-all border border-green-500/30 flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
-              <span>Take MCQ Course Test</span>
+              <span>Consult a Scholar Now</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('courses')}
