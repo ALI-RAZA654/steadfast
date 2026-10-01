@@ -36,7 +36,7 @@ interface HomePageProps {
   experts: Expert[];
   courses: Course[];
   onNavigate: (view: PageView, params?: any) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({

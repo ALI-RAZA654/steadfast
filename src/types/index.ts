@@ -1,6 +1,6 @@
-export type ConsultationType = 'chat' | 'voice';
+export type ConsultationType = 'chat' | 'voice' | 'video';
 
-export type UserRole = 'student' | 'expert' | 'admin';
+export type UserRole = 'student' | 'teacher' | 'admin';
 
 export interface ToastMessage {
   id: string;
@@ -17,6 +17,7 @@ export interface User {
   phone?: string;
   location?: string;
   bio?: string;
+  status?: 'Active' | 'Blocked' | 'Restricted';
   enrolledCoursesCount?: number;
   completedConsultationsCount?: number;
 }
@@ -55,7 +56,6 @@ export interface Expert {
   badges: string[];
   completedSessions: number;
   responseRate: string;
-  videoIntroUrl?: string;
   availableSlots?: {
     days: string[]; // e.g. ['Mon', 'Tue', 'Wed']
     times: string[]; // e.g. ['10:00 AM', '02:00 PM', '06:00 PM']
@@ -72,7 +72,7 @@ export interface TopUser {
   totalHours: number;
   coursesPurchased: number;
   lastActive: string;
-  status: 'VIP' | 'Active' | 'Regular';
+  status: 'VIP' | 'Active' | 'Regular' | 'Restricted' | 'Blocked';
 }
 
 export interface UserExpertTime {
@@ -104,7 +104,6 @@ export interface Lesson {
   title: string;
   duration: string;
   isCompleted?: boolean;
-  videoUrl?: string;
   pdfUrl?: string;
   summary?: string;
 }
@@ -138,6 +137,7 @@ export interface Course {
   price: number;
   isFree?: boolean;
   featured?: boolean;
+  callTiming?: string; // e.g. "7:00 PM – 8:00 PM (PKT)"
   description: string;
   whatYouWillLearn: string[];
   requirements: string[];
@@ -218,6 +218,124 @@ export interface Article {
   featured?: boolean;
 }
 
+export interface CouponRedemption {
+  id: string;
+  studentName: string;
+  studentEmail: string;
+  redeemedAt: string;
+  serviceOrCourse: string;
+  originalPrice: number;
+  discountSaved: number;
+  finalAmountPaid: number;
+}
+
+export interface Coupon {
+  id: string;
+  code: string;
+  teacherName: string;
+  teacherId?: string;
+  discountPercent: number;
+  validUntil: string;
+  maxUses: number;
+  usedCount: number;
+  targetCourseOrService: string;
+  isActive: boolean;
+  createdAt: string;
+  totalRevenueGenerated?: number;
+  redemptions?: CouponRedemption[];
+}
+
+export interface RegisteredTeacher {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  passwordSuggestion: string;
+  title: string;
+  specialization: string;
+  status: 'Active' | 'Suspended';
+  totalStudents: number;
+  totalRevenue: number;
+  joinedDate: string;
+}
+
+export interface McqQuestion {
+  id: string;
+  question: string;
+  options: { key: 'A' | 'B' | 'C' | 'D'; text: string }[];
+  correctKey: 'A' | 'B' | 'C' | 'D';
+  topic: 'Aqeedah' | 'Quran & Seerah' | 'Fiqh & Masail' | 'Hadith & Sunnah' | 'Islamic Finance';
+  explanation: string;
+}
+
+export interface TopicPerformance {
+  topic: string;
+  totalQuestions: number;
+  correctCount: number;
+  percentage: number;
+  status: 'Strong 💪' | 'Moderate ⚖️' | 'Weak / Needs Improvement ⚠️';
+}
+
+export interface WrongQuestionAnalysis {
+  questionId: string;
+  questionText: string;
+  topic: string;
+  userAnswerKey: string;
+  userAnswerText: string;
+  correctAnswerKey: string;
+  correctAnswerText: string;
+  explanation: string;
+}
+
+export interface QuizAttemptResult {
+  id: string;
+  date: string;
+  testName: string;
+  totalQuestions: number;
+  correctCount: number;
+  incorrectCount: number;
+  marksObtained: number;
+  totalMarks: number;
+  percentage: number;
+  overallScoreBadge: string;
+  topicBreakdown: TopicPerformance[];
+  wrongQuestions: WrongQuestionAnalysis[];
+  strongTopics: string[];
+  weakTopics: string[];
+}
+
+export interface TopicInsight {
+  id: string;
+  topicName: string;
+  category: string;
+  demandLevel: 'High' | 'Very High' | 'Surging' | 'Moderate';
+  searchSharePercent: number;
+  monthlyGrowthPercent: number;
+  totalConsultationsRequested: number;
+  aiRecommendation: string;
+  status: 'Critical' | 'Growth Opportunity' | 'Stable';
+}
+
+export interface RevenueForecast {
+  period: string; // e.g., 'May 2026', 'Jun 2026', 'Oct 2026 (Projected)'
+  actualRevenue?: number;
+  projectedRevenue: number;
+  growthPercentage: number;
+  type: 'historical' | 'projected';
+  keyDriver: string;
+}
+
+export interface ServiceSuggestion {
+  id: string;
+  title: string;
+  category: string;
+  userInterestScore: number; // 0 to 100
+  searchQueries: string[];
+  suggestedType: 'Consultation Service' | 'Specialized Course' | 'Masterclass Bootcamp';
+  expectedRevenueImpact: string;
+  recommendedScholar: string;
+}
+
 export type PageView =
   | 'home'
   | 'categories'
@@ -231,6 +349,7 @@ export type PageView =
   | 'courses'
   | 'course-detail'
   | 'dashboard'
+  | 'teacher-dashboard'
   | 'lesson'
   | 'certificates'
   | 'resources'
@@ -242,4 +361,5 @@ export type PageView =
   | 'profile'
   | 'quiz'
   | 'screens-overview';
+
 

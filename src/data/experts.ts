@@ -19,7 +19,6 @@ export const expertsData: Expert[] = [
     flatSessionPrice: 35,
     completedSessions: 2000,
     responseRate: 'Instant (Online)',
-    videoIntroUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
     bio: 'I am a Mufti and Islamic finance consultant with 10+ years of experience. I help Muslims with fiqh, business, inheritance and daily masail based on Quran and Sunnah.',
     qualifications: [
       'Shahadat-ul-Alimiyyah (Dars-e-Nizami)',

@@ -23,6 +23,7 @@ export const coursesData: Course[] = [
     level: 'Beginner',
     price: 49,
     featured: true,
+    callTiming: '7:00 PM – 8:00 PM (PKT)',
     description: 'Master the divine science of Quranic recitation with exact articulation points, rules of Noon Sakinah, Meem Sakinah, Maddah letters, and stopping signs. This course is structured for beginners and intermediate reciters seeking precision and spiritual connection.',
     whatYouWillLearn: [
       'Correct pronunciation of all Arabic letters from their Makharij (points of articulation)',
@@ -41,7 +42,7 @@ export const coursesData: Course[] = [
         id: 'sec-1',
         title: 'Module 1: Introduction & Articulation Points (Makharij)',
         lessons: [
-          { id: 'les-101', title: '1. Virtues of Correct Tajweed & Course Orientation', duration: '18 mins', isCompleted: true, videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+          { id: 'les-101', title: '1. Virtues of Correct Tajweed & Course Orientation', duration: '18 mins', isCompleted: true },
           { id: 'les-102', title: '2. Throat Letters (Halq) & Deep Pronunciation', duration: '25 mins', isCompleted: true },
           { id: 'les-103', title: '3. Tongue Letters (Lisan) - Part 1', duration: '30 mins', isCompleted: false },
           { id: 'les-104', title: '4. Tongue Letters (Lisan) - Part 2 & Heavy Letters', duration: '32 mins', isCompleted: false }
@@ -90,6 +91,7 @@ export const coursesData: Course[] = [
     level: 'Beginner',
     price: 39,
     featured: true,
+    callTiming: '8:30 PM – 9:30 PM (PKT)',
     description: 'Gain absolute clarity and confidence in fulfilling your daily obligatory acts of worship (Fard \'Ayn). This course breaks down classical jurisprudence into clear practical principles for modern life.',
     whatYouWillLearn: [
       'Complete rules of ritual purity (Wudu, Ghusl, Tayammum, Najasat)',

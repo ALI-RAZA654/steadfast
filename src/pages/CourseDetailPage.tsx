@@ -62,14 +62,23 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
           </p>
 
           <div className="pt-2 flex flex-wrap items-center gap-4 text-xs">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700">
               <img
                 src={course.instructor.avatar}
                 alt={course.instructor.name}
-                className="w-7 h-7 rounded-full border border-green-600 object-cover"
+                className="w-7 h-7 rounded-full border border-amber-400 object-cover"
               />
-              <span className="font-semibold text-slate-200">{course.instructor.name}</span>
+              <div>
+                <span className="text-[10px] text-amber-400 font-bold block uppercase">Scholar / Instructor</span>
+                <span className="font-bold text-white">{course.instructor.name}</span>
+              </div>
             </div>
+            
+            <div className="flex items-center gap-1.5 bg-amber-500/20 text-amber-300 px-3.5 py-1.5 rounded-full border border-amber-500/40 font-bold">
+              <Clock className="w-4 h-4 text-amber-400" />
+              <span>Live Class / Call Timing: {course.callTiming || '7:00 PM – 8:00 PM (PKT)'}</span>
+            </div>
+
             <Rating rating={course.rating} reviewCount={course.reviewCount} size="sm" />
             <span className="text-slate-400">• {course.studentCount}+ Enrolled Students</span>
           </div>
@@ -188,6 +197,10 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
               <div className="flex justify-between">
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-slate-400" /> Duration:</span>
                 <span className="font-semibold text-slate-900">{course.duration}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-amber-600" /> Live Call Timing:</span>
+                <span className="font-bold text-amber-900">{course.callTiming || '7:00 PM – 8:00 PM (PKT)'}</span>
               </div>
               <div className="flex justify-between">
                 <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4 text-slate-400" /> Lessons:</span>

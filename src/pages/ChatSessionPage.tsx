@@ -4,7 +4,6 @@ import { VerifiedBadge } from '../components/VerifiedBadge';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { 
   Phone, 
-  Video, 
   Send, 
   Paperclip, 
   Smile, 
@@ -21,7 +20,7 @@ interface ChatSessionPageProps {
   expert: Expert;
   initialMessages: ChatMessage[];
   onNavigate: (view: PageView, params?: any) => void;
-  onLaunchCallModal?: (type: 'voice' | 'video') => void;
+  onLaunchCallModal?: (type: 'voice') => void;
 }
 
 export const ChatSessionPage: React.FC<ChatSessionPageProps> = ({
@@ -67,11 +66,11 @@ export const ChatSessionPage: React.FC<ChatSessionPageProps> = ({
     }, 1500);
   };
 
-  const triggerCall = (type: 'voice' | 'video') => {
+  const triggerCall = (type: 'voice') => {
     if (onLaunchCallModal) {
       onLaunchCallModal(type);
     } else {
-      setShowCallNotice(`Simulating direct encrypted ${type.toUpperCase()} call room with ${expert.name}...`);
+      setShowCallNotice(`Simulating direct encrypted VOICE call room with ${expert.name}...`);
       setTimeout(() => setShowCallNotice(null), 4000);
     }
   };

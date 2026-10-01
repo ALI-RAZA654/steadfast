@@ -7,7 +7,7 @@ import { Phone, MessageSquare, Video, UserCheck, Clock, Languages, ChevronRight 
 interface ExpertCardProps {
   expert: Expert;
   onViewProfile: (expertId: string) => void;
-  onBookConsultation: (expertId: string, method: 'chat' | 'voice') => void;
+  onBookConsultation: (expertId: string, method: 'chat' | 'voice' | 'video') => void;
   compact?: boolean;
 }
 
@@ -91,20 +91,30 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
         )}
       </div>
 
-      {/* Action Buttons */}
+      {/* Action Buttons - Direct Call & Video Call */}
       <div className="p-4 pt-3 border-t border-slate-100 bg-slate-50/50 space-y-2">
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-3 gap-1.5">
           <button
             onClick={() => onBookConsultation(expert.id, 'voice')}
-            className="py-2 px-2 text-xs font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all flex items-center justify-center gap-1 shadow-sm"
+            className="py-2 px-1 text-[11px] font-bold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 transition-all flex items-center justify-center gap-1 shadow-sm"
+            title="Instant Voice Call"
           >
             <Phone className="w-3.5 h-3.5" />
-            <span>Call</span>
+            <span>Voice</span>
+          </button>
+
+          <button
+            onClick={() => onBookConsultation(expert.id, 'video')}
+            className="py-2 px-1 text-[11px] font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all flex items-center justify-center gap-1 shadow-sm"
+            title="Instant Video Call"
+          >
+            <Video className="w-3.5 h-3.5" />
+            <span>Video</span>
           </button>
 
           <button
             onClick={() => onBookConsultation(expert.id, 'chat')}
-            className="py-2 px-2 text-xs font-bold rounded-xl border border-blue-600 text-blue-600 hover:bg-blue-50 transition-all flex items-center justify-center gap-1"
+            className="py-2 px-1 text-[11px] font-bold rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 transition-all flex items-center justify-center gap-1"
           >
             <MessageSquare className="w-3.5 h-3.5" />
             <span>Chat</span>
@@ -113,9 +123,9 @@ export const ExpertCard: React.FC<ExpertCardProps> = ({
 
         <button
           onClick={() => onViewProfile(expert.id)}
-          className="w-full py-2 px-4 text-xs font-bold rounded-xl text-slate-800 bg-slate-200/80 hover:bg-slate-300 transition-all flex items-center justify-center gap-1"
+          className="w-full py-1.5 px-4 text-[11px] font-bold rounded-xl text-slate-800 bg-slate-200/80 hover:bg-slate-300 transition-all flex items-center justify-center gap-1"
         >
-          <span>View Profile</span>
+          <span>View Scholar Profile</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
       </div>

@@ -4,18 +4,24 @@ import { Mail, Lock, ArrowRight, ShieldCheck, UserCheck, Key } from 'lucide-reac
 
 interface LoginPageProps {
   onNavigate: (view: PageView) => void;
-  onLoginSuccess: (role?: 'student' | 'admin') => void;
+  onLoginSuccess: (role?: 'student' | 'teacher' | 'admin') => void;
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess }) => {
   const [email, setEmail] = useState('admin@steadfastdeen.com');
   const [password, setPassword] = useState('admin123');
-  const [selectedRole, setSelectedRole] = useState<'admin' | 'student'>('admin');
+  const [selectedRole, setSelectedRole] = useState<'admin' | 'teacher' | 'student'>('admin');
 
   const fillAdminCredentials = () => {
     setEmail('admin@steadfastdeen.com');
     setPassword('admin123');
     setSelectedRole('admin');
+  };
+
+  const fillTeacherCredentials = () => {
+    setEmail('teacher@steadfastdeen.com');
+    setPassword('teacher123');
+    setSelectedRole('teacher');
   };
 
   const fillStudentCredentials = () => {
@@ -26,14 +32,25 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const isEmpAdmin = email.toLowerCase().includes('admin');
-    const finalRole = isEmpAdmin ? 'admin' : 'student';
+    let finalRole: 'admin' | 'teacher' | 'student' = selectedRole;
+    if (email.toLowerCase().includes('admin')) {
+      finalRole = 'admin';
+    } else if (email.toLowerCase().includes('teacher') || email.toLowerCase().includes('mufti') || email.toLowerCase().includes('scholar')) {
+      finalRole = 'teacher';
+    } else if (email.toLowerCase().includes('student')) {
+      finalRole = 'student';
+    }
+
     onLoginSuccess(finalRole);
-    onNavigate('dashboard');
+    if (finalRole === 'teacher') {
+      onNavigate('teacher-dashboard');
+    } else {
+      onNavigate('dashboard');
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-10 pb-24 space-y-6">
+    <div className="max-w-xl mx-auto px-4 py-10 pb-24 space-y-6">
       
       {/* Brand Header */}
       <div className="text-center space-y-3">
@@ -46,50 +63,70 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
           }}
         />
         <div>
-          <h1 className="text-2xl font-black font-heading text-slate-900">Welcome to Steadfast Deen</h1>
-          <p className="text-xs text-slate-500 mt-1">Log in to access scholar consultations, learning portal, or admin management.</p>
+          <h1 className="text-2xl sm:text-3xl font-black font-heading text-slate-900">Welcome to Steadfast Deen</h1>
+          <p className="text-xs text-slate-500 mt-1">Log in to access scholar consultations, learning portal, teacher panel, or admin management.</p>
         </div>
       </div>
 
       {/* QUICK CREDENTIALS PRESET BOX */}
-      <div className="bg-amber-50 border border-amber-200/90 rounded-2xl p-4 space-y-2.5 shadow-2xs">
-        <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-          <Key className="w-4 h-4 text-amber-600" />
-          <span>Quick Login Credentials (Click to Fill)</span>
+      <div className="bg-amber-50 border border-amber-200/90 rounded-2xl p-4.5 space-y-3 shadow-2xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
+            <Key className="w-4 h-4 text-amber-600" />
+            <span>Quick Login Credentials (Click to Fill & Test)</span>
+          </div>
+          <span className="text-[10px] bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full font-extrabold uppercase">3 Dedicated Roles</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <button
             type="button"
             onClick={fillAdminCredentials}
-            className={`p-2.5 rounded-xl border text-left transition-all ${
+            className={`p-3 rounded-xl border text-left transition-all ${
               selectedRole === 'admin'
-                ? 'bg-slate-900 text-amber-300 border-slate-900 shadow-xs'
+                ? 'bg-slate-900 text-amber-300 border-slate-900 shadow-md ring-2 ring-amber-400'
                 : 'bg-white text-slate-800 border-amber-200 hover:bg-amber-100/50'
             }`}
           >
             <div className="flex items-center justify-between text-[11px] font-extrabold">
-              <span>👑 Admin Account</span>
-              {selectedRole === 'admin' && <span className="text-[9px] bg-amber-400 text-slate-950 px-1 rounded">Active</span>}
+              <span>👑 Admin</span>
+              {selectedRole === 'admin' && <span className="text-[9px] bg-amber-400 text-slate-950 px-1 rounded font-bold">Active</span>}
             </div>
-            <div className="text-[10px] opacity-80 mt-0.5 truncate">admin@steadfastdeen.com</div>
+            <div className="text-[10px] opacity-80 mt-1 truncate font-mono">admin@steadfastdeen.com</div>
             <div className="text-[10px] font-mono opacity-80">Pass: admin123</div>
           </button>
 
           <button
             type="button"
-            onClick={fillStudentCredentials}
-            className={`p-2.5 rounded-xl border text-left transition-all ${
-              selectedRole === 'student'
-                ? 'bg-blue-900 text-white border-blue-900 shadow-xs'
+            onClick={fillTeacherCredentials}
+            className={`p-3 rounded-xl border text-left transition-all ${
+              selectedRole === 'teacher'
+                ? 'bg-amber-900 text-amber-200 border-amber-800 shadow-md ring-2 ring-amber-400'
                 : 'bg-white text-slate-800 border-amber-200 hover:bg-amber-100/50'
             }`}
           >
             <div className="flex items-center justify-between text-[11px] font-extrabold">
-              <span>👤 Student Account</span>
-              {selectedRole === 'student' && <span className="text-[9px] bg-blue-400 text-slate-950 px-1 rounded">Active</span>}
+              <span>👳‍♂️ Teacher</span>
+              {selectedRole === 'teacher' && <span className="text-[9px] bg-amber-400 text-slate-950 px-1 rounded font-bold">Active</span>}
             </div>
-            <div className="text-[10px] opacity-80 mt-0.5 truncate">student@steadfastdeen.com</div>
+            <div className="text-[10px] opacity-80 mt-1 truncate font-mono">teacher@steadfastdeen.com</div>
+            <div className="text-[10px] font-mono opacity-80">Pass: teacher123</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={fillStudentCredentials}
+            className={`p-3 rounded-xl border text-left transition-all ${
+              selectedRole === 'student'
+                ? 'bg-blue-900 text-white border-blue-900 shadow-md ring-2 ring-blue-400'
+                : 'bg-white text-slate-800 border-amber-200 hover:bg-amber-100/50'
+            }`}
+          >
+            <div className="flex items-center justify-between text-[11px] font-extrabold">
+              <span>👤 Student</span>
+              {selectedRole === 'student' && <span className="text-[9px] bg-blue-400 text-slate-950 px-1 rounded font-bold">Active</span>}
+            </div>
+            <div className="text-[10px] opacity-80 mt-1 truncate font-mono">student@steadfastdeen.com</div>
             <div className="text-[10px] font-mono opacity-80">Pass: student123</div>
           </button>
         </div>
@@ -136,7 +173,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
             type="submit"
             className="w-full py-3.5 text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-xl shadow-md transition-colors flex items-center justify-center gap-2"
           >
-            <span>Log In ({selectedRole === 'admin' ? 'Admin Mode' : 'Student Mode'})</span>
+            <span>Log In ({selectedRole === 'admin' ? 'Admin Mode' : selectedRole === 'teacher' ? 'Teacher Mode' : 'Student Mode'})</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 

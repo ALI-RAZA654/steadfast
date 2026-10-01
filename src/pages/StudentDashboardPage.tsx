@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { User, Booking, Course, Certificate, PageView } from '../types';
 import { Breadcrumb } from '../components/Breadcrumb';
+import { mockQuizHistory } from '../data/mockAnalyticsAndCoupons';
 import { 
   BookOpen, 
   Calendar, 
@@ -14,7 +15,12 @@ import {
   FileText,
   Settings,
   Heart,
-  LayoutDashboard
+  LayoutDashboard,
+  LogOut,
+  BarChart2,
+  Sparkles,
+  HelpCircle,
+  History
 } from 'lucide-react';
 
 interface StudentDashboardPageProps {
@@ -23,6 +29,7 @@ interface StudentDashboardPageProps {
   courses: Course[];
   certificates: Certificate[];
   onNavigate: (view: PageView, params?: any) => void;
+  onLogout?: () => void;
 }
 
 export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
@@ -30,9 +37,10 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
   bookings,
   courses,
   certificates,
-  onNavigate
+  onNavigate,
+  onLogout
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'courses' | 'consultations' | 'certificates' | 'settings'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'courses' | 'consultations' | 'certificates' | 'mcq-history' | 'settings'>('overview');
 
   const upcomingBooking = bookings.find(b => b.status === 'confirmed') || bookings[0];
   const activeCourse = courses[0];
@@ -52,19 +60,30 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-xl sm:text-2xl font-bold font-heading text-white">Assalamu Alaikum, {user.name}!</h1>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950">Student</span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400 text-slate-950">Student Portal</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-400 mt-1">May Allah grant you beneficial knowledge and steadfastness.</p>
           </div>
         </div>
 
-        <button
-          onClick={() => onNavigate('courses')}
-          className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-colors flex items-center gap-1.5 shrink-0"
-        >
-          <BookOpen className="w-4 h-4" />
-          <span>Explore Catalog</span>
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => onNavigate('quiz')}
+            className="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-extrabold text-xs rounded-xl shadow-md transition-colors flex items-center gap-1.5"
+          >
+            <Sparkles className="w-4 h-4 text-amber-300" />
+            <span>Take MCQ Test</span>
+          </button>
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="px-4 py-2.5 bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 font-bold text-xs rounded-xl border border-rose-500/30 transition-colors flex items-center gap-1.5"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Log Out</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Main Grid: Sidebar + Active Tab Content */}
@@ -76,6 +95,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
             { id: 'overview', label: 'Overview', icon: LayoutDashboard },
             { id: 'courses', label: 'My Enrolled Courses', icon: BookOpen },
             { id: 'consultations', label: 'My Consultations', icon: Calendar },
+            { id: 'mcq-history', label: '📊 MCQ Quiz Analytics', icon: BarChart2 },
             { id: 'certificates', label: 'Certificates', icon: Award },
             { id: 'settings', label: 'Account Settings', icon: Settings }
           ].map((item) => {
@@ -226,6 +246,111 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
               ))}
             </div>
           </div>
+
+          {/* MCQ Quiz Analytics & History Tab View */}
+          {activeTab === 'mcq-history' && (
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-soft-lg space-y-6 animate-in fade-in duration-200">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div>
+                  <h2 className="text-lg font-bold font-heading text-slate-900 flex items-center gap-2">
+                    <BarChart2 className="w-5 h-5 text-emerald-600" />
+                    <span>Your MCQ Test Results & Topic Analytics</span>
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-1">Review your test score history, strengths, and areas requiring improvement.</p>
+                </div>
+                <button
+                  onClick={() => onNavigate('quiz')}
+                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-extrabold text-xs rounded-xl hover:from-emerald-500 hover:to-teal-600 shadow-md transition-all flex items-center gap-1.5"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Take New Assessment</span>
+                </button>
+              </div>
+
+              {/* Progress Summary Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider block">Latest Score</span>
+                  <div className="text-2xl font-black font-heading">{mockQuizHistory[0]?.percentage || 80}%</div>
+                  <span className="text-[11px] font-semibold text-emerald-700">{mockQuizHistory[0]?.overallScoreBadge || 'Distinction'}</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-900 space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider block">Top Strong Subjects</span>
+                  <div className="text-xs font-bold flex flex-wrap gap-1 pt-1">
+                    {(mockQuizHistory[0]?.strongTopics || ['Aqeedah', 'Quran']).map((st, i) => (
+                      <span key={i} className="px-2 py-0.5 bg-white border border-indigo-200 rounded text-indigo-800 font-extrabold text-[10px]">
+                        💪 {st}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider block">Focus Weak Areas</span>
+                  <div className="text-xs font-bold flex flex-wrap gap-1 pt-1">
+                    {(mockQuizHistory[0]?.weakTopics || ['Hadith', 'Fiqh']).map((wt, i) => (
+                      <span key={i} className="px-2 py-0.5 bg-white border border-rose-200 rounded text-rose-800 font-extrabold text-[10px]">
+                        ⚠️ {wt}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* History Table */}
+              <div className="overflow-x-auto pt-2">
+                <table className="w-full text-left text-xs text-slate-700">
+                  <thead className="bg-slate-100 text-slate-900 uppercase text-[10px] font-bold">
+                    <tr>
+                      <th className="p-3">Test Name & Date</th>
+                      <th className="p-3">Marks</th>
+                      <th className="p-3">Percentage</th>
+                      <th className="p-3">Strong Topics</th>
+                      <th className="p-3">Weak Topics</th>
+                      <th className="p-3 text-right">Badge</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {mockQuizHistory.map((test) => (
+                      <tr key={test.id} className="hover:bg-slate-50">
+                        <td className="p-3 font-bold text-slate-900">
+                          {test.testName}
+                          <br/>
+                          <span className="text-[10px] text-slate-400 font-normal">{test.date}</span>
+                        </td>
+                        <td className="p-3 font-semibold">{test.correctCount} / {test.totalQuestions} Marks</td>
+                        <td className="p-3 font-extrabold text-emerald-700 text-sm">{test.percentage}%</td>
+                        <td className="p-3">
+                          <div className="flex flex-wrap gap-1">
+                            {test.strongTopics.map((st, i) => (
+                              <span key={i} className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+                                💪 {st}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="p-3">
+                          <div className="flex flex-wrap gap-1">
+                            {test.weakTopics.map((wt, i) => (
+                              <span key={i} className="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold text-[10px]">
+                                ⚠️ {wt}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="p-3 text-right">
+                          <span className="px-2 py-0.5 rounded bg-slate-900 text-amber-300 font-bold text-[10px]">
+                            {test.overallScoreBadge}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
 
         </div>
 

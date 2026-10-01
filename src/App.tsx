@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PageView, Expert, Category, Course, Article, Booking, User, ToastMessage } from './types';
+import { PageView, Expert, Category, Course, Article, Booking, User, ToastMessage, Coupon } from './types';
 
 // Mock Data
 import { categoriesData } from './data/categories';
@@ -7,6 +7,7 @@ import { expertsData } from './data/experts';
 import { coursesData } from './data/courses';
 import { articlesData } from './data/articles';
 import { mockCurrentUser, mockBookings, mockCertificates, mockChatMessages } from './data/mockUserData';
+import { initialCoupons } from './data/mockAnalyticsAndCoupons';
 
 // Components & Showcase
 import { Header } from './components/Header';
@@ -37,6 +38,7 @@ import { ResourcesPage } from './pages/ResourcesPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { TeacherDashboardPage } from './pages/TeacherDashboardPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProfilePage } from './pages/ProfilePage';
@@ -56,6 +58,7 @@ export function App() {
   });
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [bookings, setBookings] = useState<Booking[]>(mockBookings);
+  const [coupons, setCoupons] = useState<Coupon[]>(initialCoupons);
   const [toast, setToast] = useState<ToastMessage | null>(null);
 
   // Call Modal simulation state
@@ -65,10 +68,16 @@ export function App() {
 
   // Navigation handler
   const handleNavigate = (view: PageView, params: any = {}) => {
-    if (view === 'dashboard' && !isLoggedIn) {
+    if ((view === 'dashboard' || view === 'teacher-dashboard') && !isLoggedIn) {
       setCurrentView('login');
       setViewParams(params);
-      showToastNotification('info', 'Please enter your Admin or Student credentials to access the Dashboard.');
+      showToastNotification('info', 'Please log in with Admin, Teacher, or Student credentials to access the Portal.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    // Route fallback if resources is clicked
+    if (view === 'resources') {
+      setCurrentView('courses');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -81,9 +90,14 @@ export function App() {
     setToast({ id: `toast-${Date.now()}`, type, message });
   };
 
-  // Direct Book Consultation launcher
-  const handleBookConsultation = (expertId: string, method: 'chat' | 'voice') => {
-    handleNavigate('booking', { expertId, method });
+  // Direct Connection Consultation Call Launcher (No date/time booking form needed for calls!)
+  const handleBookConsultation = (expertId: string, method: 'chat' | 'voice' | 'video') => {
+    const expert = expertsData.find(e => e.id === expertId) || expertsData[0];
+    if (method === 'voice' || method === 'video') {
+      setActiveCallModal({ type: method, expert });
+    } else {
+      handleNavigate('chat', { expertId });
+    }
   };
 
   // Active call trigger
@@ -181,6 +195,7 @@ export function App() {
         {currentView === 'checkout' && (
           <CheckoutPage
             bookingData={viewParams.bookingDraft}
+            coupons={coupons}
             onNavigate={handleNavigate}
             onCompleteBooking={(newRecord) => {
               setBookings([newRecord, ...bookings]);
@@ -229,11 +244,27 @@ export function App() {
               experts={expertsData}
               bookings={bookings}
               categories={categoriesData}
+              coupons={coupons}
+              onAddCoupon={(nc) => setCoupons([nc, ...coupons])}
               onNavigate={handleNavigate}
               onLogout={() => {
                 setIsLoggedIn(false);
                 handleNavigate('login');
                 showToastNotification('info', 'Logged out successfully');
+              }}
+            />
+          ) : currentUser.role === 'teacher' ? (
+            <TeacherDashboardPage
+              currentUser={currentUser}
+              coupons={coupons}
+              onAddCoupon={(nc) => setCoupons([nc, ...coupons])}
+              onNavigate={handleNavigate}
+              showToast={(type, msg) => showToastNotification(type, msg)}
+              onLaunchCall={(type, scholarName) => handleLaunchCall(type, selectedExpert)}
+              onLogout={() => {
+                setIsLoggedIn(false);
+                handleNavigate('login');
+                showToastNotification('info', 'Logged out from Teacher Portal');
               }}
             />
           ) : (
@@ -243,8 +274,29 @@ export function App() {
               courses={coursesData}
               certificates={mockCertificates}
               onNavigate={handleNavigate}
+              onLogout={() => {
+                setIsLoggedIn(false);
+                handleNavigate('login');
+                showToastNotification('info', 'Logged out from Student Portal');
+              }}
             />
           )
+        )}
+
+        {currentView === 'teacher-dashboard' && (
+          <TeacherDashboardPage
+            currentUser={currentUser}
+            coupons={coupons}
+            onAddCoupon={(nc) => setCoupons([nc, ...coupons])}
+            onNavigate={handleNavigate}
+            showToast={(type, msg) => showToastNotification(type, msg)}
+            onLaunchCall={(type, scholarName) => handleLaunchCall(type, selectedExpert)}
+            onLogout={() => {
+              setIsLoggedIn(false);
+              handleNavigate('login');
+              showToastNotification('info', 'Logged out from Teacher Portal');
+            }}
+          />
         )}
 
         {currentView === 'lesson' && (
@@ -292,11 +344,11 @@ export function App() {
               const newRole = role || 'admin';
               setCurrentUser({
                 ...currentUser,
-                name: newRole === 'admin' ? 'System Administrator' : 'Tariq Al-Mansoor',
-                email: newRole === 'admin' ? 'admin@steadfastdeen.com' : 'student@steadfastdeen.com',
+                name: newRole === 'admin' ? 'System Administrator' : newRole === 'teacher' ? 'Mufti Ahmed Khan' : 'Tariq Al-Mansoor',
+                email: newRole === 'admin' ? 'admin@steadfastdeen.com' : newRole === 'teacher' ? 'teacher@steadfastdeen.com' : 'student@steadfastdeen.com',
                 role: newRole
               });
-              showToastNotification('success', `Logged in as ${newRole === 'admin' ? 'Administrator' : 'Student'}!`);
+              showToastNotification('success', `Logged in as ${newRole === 'admin' ? 'Administrator' : newRole === 'teacher' ? 'Teacher / Scholar' : 'Student'}!`);
             }}
           />
         )}
@@ -344,36 +396,18 @@ export function App() {
               <span>00:04:12</span>
             </div>
 
-            {/* Video / Avatar Box */}
-            <div className="relative aspect-video rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden flex items-center justify-center">
-              {activeCallModal.type === 'video' && !isVideoOff ? (
+            {/* Audio Call Box */}
+            <div className="py-8 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center">
+              <div className="text-center space-y-3">
                 <img
-                  src={activeCallModal.expert.coverImage || activeCallModal.expert.avatar}
+                  src={activeCallModal.expert.avatar}
                   alt={activeCallModal.expert.name}
-                  className="w-full h-full object-cover opacity-80"
+                  className="w-24 h-24 rounded-full object-cover border-4 border-amber-400 mx-auto shadow-xl animate-pulse"
                 />
-              ) : (
-                <div className="text-center space-y-3">
-                  <img
-                    src={activeCallModal.expert.avatar}
-                    alt={activeCallModal.expert.name}
-                    className="w-24 h-24 rounded-full object-cover border-4 border-amber-400 mx-auto shadow-xl animate-pulse"
-                  />
-                  <h3 className="text-lg font-bold font-heading">{activeCallModal.expert.name}</h3>
-                  <span className="text-xs text-amber-300 font-medium">{activeCallModal.expert.title}</span>
-                </div>
-              )}
-
-              {/* Small self video PIP */}
-              {activeCallModal.type === 'video' && (
-                <div className="absolute bottom-3 right-3 w-28 h-20 bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
-                  <img
-                    src={currentUser.avatar}
-                    alt="Self"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
+                <h3 className="text-lg font-bold font-heading">{activeCallModal.expert.name}</h3>
+                <span className="text-xs text-amber-300 font-medium">{activeCallModal.expert.title}</span>
+                <p className="text-xs text-slate-400 pt-1">Voice Consultation Session</p>
+              </div>
             </div>
 
             {/* Call Action Controls */}
@@ -387,18 +421,6 @@ export function App() {
               >
                 {isMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
               </button>
-
-              {activeCallModal.type === 'video' && (
-                <button
-                  onClick={() => setIsVideoOff(!isVideoOff)}
-                  className={`p-3.5 rounded-full border transition-all ${
-                    isVideoOff ? 'bg-rose-600 text-white border-rose-500' : 'bg-slate-800 text-slate-200 border-slate-700 hover:bg-slate-700'
-                  }`}
-                  title={isVideoOff ? 'Turn Camera On' : 'Turn Camera Off'}
-                >
-                  {isVideoOff ? <VideoOff className="w-5 h-5" /> : <Video className="w-5 h-5" />}
-                </button>
-              )}
 
               <button
                 onClick={() => {

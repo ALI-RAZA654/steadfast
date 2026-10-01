@@ -38,7 +38,6 @@ export const Header: React.FC<HeaderProps> = ({
     { name: 'Learn', view: 'courses', icon: BookOpen },
     { name: 'Experts', view: 'experts', icon: Users },
     { name: 'Consultations', view: 'categories', icon: Calendar },
-    { name: 'Resources', view: 'resources', icon: FileText },
     { name: 'About', view: 'about', icon: Info },
   ];
 
@@ -50,6 +49,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const isAdmin = currentUser?.role === 'admin';
+  const isTeacher = currentUser?.role === 'teacher';
 
   return (
     <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-lg border-b border-slate-800/80 text-white transition-all shadow-lg">
@@ -111,32 +111,35 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Auth / Dashboard buttons */}
             {isLoggedIn ? (
               <button
-                onClick={() => onNavigate('dashboard')}
+                onClick={() => onNavigate(isTeacher ? 'teacher-dashboard' : 'dashboard')}
                 className={`h-9 px-3.5 rounded-full text-xs font-extrabold flex items-center gap-1.5 border transition-all whitespace-nowrap ${
                   isAdmin
                     ? 'bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white border-emerald-500/40 shadow-sm'
+                    : isTeacher
+                    ? 'bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white border-amber-500/40 shadow-sm'
                     : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 border-slate-700'
                 }`}
               >
                 <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
-                <span>{isAdmin ? '👑 Admin Panel' : 'Dashboard'}</span>
+                <span>{isAdmin ? '👑 Admin Panel' : isTeacher ? '👳‍♂️ Teacher Portal' : 'Dashboard'}</span>
               </button>
             ) : (
               <button
                 onClick={() => onNavigate('login')}
                 className="h-9 px-3.5 text-xs font-bold text-slate-200 hover:text-white bg-slate-800/90 hover:bg-slate-700/90 border border-slate-700/80 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap"
               >
-                <span>🔑 Admin / Login</span>
+                <span>🔑 Portal Login</span>
               </button>
             )}
 
-            {/* MCQ Quiz CTA Button */}
+            {/* MCQ Quiz CTA Button - Automated Level Test */}
             <button
               onClick={() => onNavigate('quiz')}
               className="h-9 px-4 text-xs font-extrabold text-white bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 rounded-full shadow-md hover:shadow-emerald-500/20 transition-all border border-emerald-400/30 flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              title="Automated Course Finder Test"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>MCQ Course Test</span>
+              <span>Automated MCQ Test</span>
             </button>
           </div>
 

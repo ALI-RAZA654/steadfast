@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Course, Lesson, PageView } from '../types';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { 
-  PlayCircle, 
   CheckCircle2, 
   ArrowLeft, 
   ArrowRight, 
@@ -29,8 +28,7 @@ export const LessonPage: React.FC<LessonPageProps> = ({
   const defaultLesson = allLessons.find(l => l.id === initialLessonId) || allLessons[0] || {
     id: 'les-101',
     title: '1. Virtues of Correct Tajweed & Course Orientation',
-    duration: '18 mins',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4'
+    duration: '18 mins'
   };
 
   const [activeLesson, setActiveLesson] = useState<Lesson>(defaultLesson);
@@ -69,16 +67,24 @@ export const LessonPage: React.FC<LessonPageProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        {/* Left Main Lesson Screen (Video + Resources) */}
+        {/* Left Main Lesson Screen (Reading & Content) */}
         <div className="lg:col-span-8 space-y-6">
           
-          {/* Video Player Box */}
-          <div className="bg-slate-950 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative aspect-video">
-            <video
-              controls
-              poster={course.thumbnail}
-              src={activeLesson.videoUrl || 'https://www.w3schools.com/html/mov_bbb.mp4'}
-              className="w-full h-full object-cover"
+          {/* Main Content Banner / Cover */}
+          <div className="bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-xl relative p-8 sm:p-12 text-white">
+            <div className="relative z-10 space-y-4 max-w-2xl">
+              <span className="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-full text-xs font-semibold inline-block">
+                Lesson Module
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading">{activeLesson.title}</h2>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Read carefully through the authentic references, rules, and examples provided below for this module.
+              </p>
+            </div>
+            <img 
+              src={course.thumbnail} 
+              alt={course.title}
+              className="absolute right-0 top-0 bottom-0 w-1/3 object-cover opacity-20 mask-gradient hidden sm:block" 
             />
           </div>
 
@@ -187,7 +193,7 @@ export const LessonPage: React.FC<LessonPageProps> = ({
                         }`}
                       >
                         <div className="flex items-center gap-2 min-w-0">
-                          <PlayCircle className={`w-3.5 h-3.5 shrink-0 ${isCurrent ? 'text-slate-950' : 'text-amber-600'}`} />
+                          <BookOpen className={`w-3.5 h-3.5 shrink-0 ${isCurrent ? 'text-slate-950' : 'text-amber-600'}`} />
                           <span className="truncate">{les.title}</span>
                         </div>
                         {isDone && <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />}
